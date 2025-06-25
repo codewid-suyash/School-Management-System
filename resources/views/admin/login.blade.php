@@ -57,9 +57,7 @@
                         </div>
                     </div>
                     
-                    @error('password')
-                        <p class="text-danger">{{$message}}</p>
-                        @enderror
+                  
 
                     <div class="row">
                         <div class="col-8">

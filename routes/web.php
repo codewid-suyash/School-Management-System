@@ -16,7 +16,7 @@ Route::group(['prefix'=> 'admin'], function () {
         Route::post('login',[AdminController::class, 'authenticate'])->name('admin.authenticate');
         Route::get('register',[AdminController::class, 'register'])->name('admin.register');
         Route::get('login',[AdminController::class, 'index'])->name('admin.login');
-    });
+});
 
     Route::group(['middleware'=> 'admin.auth'],function(){
         Route::get('logout',[AdminController::class, 'logout'])->name('admin.logout');
@@ -51,7 +51,6 @@ Route::group(['prefix'=> 'admin'], function () {
 
          Route::get('feestructure/create',[FeeStructureController::class, 'index'])->name('fee-structure.create');
          Route::post('feestructure/store',[FeeStructureController::class, 'store'])->name('fee-structure.store');
-
          Route::get('feestructure/read',[FeeStructureController::class, 'read'])->name('fee-structure.read');
 
     });

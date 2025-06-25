@@ -6,8 +6,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard</title>
-  <base href="{{asset('admincss')}}/" />
+  <title>School.LMS</title>
+  <base href="{{asset('admincss')}}/"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
 
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -34,9 +34,9 @@
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <div class="preloader flex-column justify-content-center align-items-center">
+    <!-- <div class="preloader flex-column justify-content-center align-items-center">
       <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-    </div>
+    </div> -->
 
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
@@ -51,7 +51,22 @@
           <a href="{{route('academic-year.create')}}" class="nav-link">Academic Year</a>
         </li>
       </ul>
-
+  <!-- Right navbar links -->
+  <ul class="navbar-nav ml-auto">
+    <!-- Profile Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user-circle"></i> Profile
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+        <a class="dropdown-item" href="">My Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item text-danger" href="{{route('admin.logout')}}">
+        Logout
+        </a>
+      </div>
+    </li>
+  </ul>
     
     </nav>
 
@@ -59,8 +74,8 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
       <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light"> School LMS</span>
+        <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+        <span class="brand-text font-weight-light">School Management System</span>
       </a>
 
       <div class="sidebar">
@@ -199,7 +214,7 @@
    @yield('content')
 
     <footer class="main-footer">
-      <strong>Copyright &copy; 2025-2026 <a href="https://adminlte.io/">Student.LMS</a>.</strong>
+      <strong> &copy; 2025-2026 <a href="">Student.LMS</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0

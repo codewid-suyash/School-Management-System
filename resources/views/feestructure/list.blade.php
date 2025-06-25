@@ -42,7 +42,7 @@
         @endif
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><a href="{{route('fee-structure.create')}}">Create Fee-Structure</a> </h3>
+              <h3 class="card-title"><a href="{{route('fee-structure.create')}}">Create New Fee-Structure</a> </h3>
             </div>
 
             <div class="card-body">
@@ -51,16 +51,44 @@
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Academic Year</th>
+                    <th>Fee Head</th>
+                    <th>April</th>
+                    <th>May</th>
+                    <th>June</th>
+                    <th>July</th>
+                    <th>August</th>
+                    <th>September</th>
+                    <th>October</th>
+                    <th>November</th>
+                    <th>December</th>
+                    <th>January</th>
+                    <th>February</th>
+                    <th>March</th>
                     <th>Created At</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($academic_year as $item )
+                    @foreach ($feestructures as $item )
                     <tr>
                         <th>{{$loop->iteration }} </th>
-                        <th>{{$item->name}} </th>
+                        <th>{{$item->Classes->name}} </th>
+                        <th>{{$item->AcademicYear->name}} </th>
+                        <th>{{$item->FeeHead->name}} </th>
+                        <th>{{$item->april}} </th>
+                        <th>{{$item->may}} </th>
+                        <th>{{$item->june}} </th>
+                        <th>{{$item->july}} </th>
+                        <th>{{$item->august}} </th>
+                        <th>{{$item->september}} </th>
+                        <th>{{$item->october}} </th>
+                        <th>{{$item->november}} </th>
+                        <th>{{$item->december}} </th>
+                        <th>{{$item->january}} </th>
+                        <th>{{$item->february}} </th>
+                        <th>{{$item->march}} </th>
                         <th>{{$item->created_at}} </th>
                         <th><a class="btn btn-primary" href="{{route('academic-year.edit',$item->id)}}">Edit</a>
                         <a class="btn btn-danger" href="{{route('academic-year.delete',$item->id)}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></th>
