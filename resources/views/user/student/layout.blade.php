@@ -45,7 +45,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{route('admin.dashboard')}}" class="nav-link">Home</a>
+          <a href="{{route('student.dashboard')}}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="{{route('academic-year.create')}}" class="nav-link">Academic Year</a>
@@ -56,12 +56,16 @@
     <!-- Profile Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-user-circle"></i> Profile
+        <i class="fas fa-user-circle"></i> 
+        {{ Auth::user()->name }}
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
-        <a class="dropdown-item" href="">My Profile</a>
+        <a class="dropdown-item" href="">My Profile
+            <i class="fas fa-user"></i>
+        </a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item text-danger" href="{{route('admin.logout')}}">
+        <a class="dropdown-item text-danger" href="{{route('student.logout')}}">
+          <i class="fas fa-sign-out-alt"></i>
         Logout
         </a>
       </div>
@@ -97,111 +101,12 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
             <li class="nav-item">
-              <a href="{{route('admin.dashboard')}}" class="nav-link">
+              <a href="{{route('student.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Dashboard
                 </p>
               </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  Academic Year
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('academic-year.create')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add Record</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('academic-year.read')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Record</p>
-                  </a>
-                </li>
-             
-              </ul>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                Class
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('class.create')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add Class</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('class.read')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Class</p>
-                  </a>
-                </li>
-             
-              </ul>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                Fee Head
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('fee-head.create')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add Fee-Head</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('fee-head.read')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Fee-Head</p>
-                  </a>
-                </li>
-             
-              </ul>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                 Fees Structure
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('fee-structure.create')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('fee-structure.read')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View</p>
-                  </a>
-                </li>
-             
-              </ul>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
