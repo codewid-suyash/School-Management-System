@@ -67,7 +67,7 @@
       </div>
     </li>
   </ul>
-    
+
     </nav>
 
 
@@ -80,7 +80,7 @@
 
       <div class="sidebar">
 
-        
+
 
         <div class="form-inline mt-2">
           <div class="input-group" data-widget="sidebar-search">
@@ -125,7 +125,7 @@
                     <p>View Record</p>
                   </a>
                 </li>
-             
+
               </ul>
             </li>
 
@@ -150,7 +150,7 @@
                     <p>View Class</p>
                   </a>
                 </li>
-             
+
               </ul>
             </li>
 
@@ -175,7 +175,7 @@
                     <p>View Fee-Head</p>
                   </a>
                 </li>
-             
+
               </ul>
             </li>
 
@@ -200,7 +200,7 @@
                     <p>View</p>
                   </a>
                 </li>
-             
+
               </ul>
             </li>
             <li class="nav-item">
@@ -224,10 +224,35 @@
                     <p>View Student</p>
                   </a>
                 </li>
-             
+
               </ul>
             </li>
-           
+
+             <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                 Announcement Mgmt
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('announcement.create')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Announcement</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('announcement.read')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Announcement</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
           </ul>
         </nav>
 
@@ -251,7 +276,7 @@
 
   </div>
 
-  
+
 
   <script src="plugins/jquery/jquery.min.js"></script>
 
@@ -286,7 +311,7 @@
   <script src="dist/js/demo.js"></script>
 
   <script src="dist/js/pages/dashboard.js"></script>
-  
+
   @yield('customJs')
 </body>
 

@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>School.LMS</title>
+  <title>Student Dashboard</title>
   <base href="{{asset('admincss')}}/"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
 
@@ -48,7 +48,7 @@
           <a href="{{route('student.dashboard')}}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{route('academic-year.create')}}" class="nav-link">Academic Year</a>
+          <a href="{{route('student.create')}}" class="nav-link">student</a>
         </li>
       </ul>
   <!-- Right navbar links -->
@@ -56,7 +56,7 @@
     <!-- Profile Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-user-circle"></i> 
+        <i class="fas fa-user-circle"></i>
         {{ Auth::user()->name }}
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
@@ -64,27 +64,27 @@
             <i class="fas fa-user"></i>
         </a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item text-danger" href="{{route('student.logout')}}">
+        <a class="dropdown-item" href="{{route('student.logout')}}">
           <i class="fas fa-sign-out-alt"></i>
         Logout
         </a>
       </div>
     </li>
   </ul>
-    
+
     </nav>
 
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-      <a href="index3.html" class="brand-link">
+      <a href="{{ route('student.dashboard') }}" class="brand-link">
         <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
         <span class="brand-text font-weight-light">School Management System</span>
       </a>
 
       <div class="sidebar">
 
-        
+
 
         <div class="form-inline mt-2">
           <div class="input-group" data-widget="sidebar-search">
@@ -129,10 +129,10 @@
                     <p>View Student</p>
                   </a>
                 </li>
-             
+
               </ul>
             </li>
-           
+
           </ul>
         </nav>
 
@@ -143,7 +143,7 @@
    @yield('content')
 
     <footer class="main-footer">
-      <strong> &copy; 2025-2026 <a href="">Student.LMS</a>.</strong>
+      <strong> &copy; 2025-2026 <a href="{{ route('student.dashboard') }}">Student Management System</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0
@@ -156,7 +156,7 @@
 
   </div>
 
-  
+
 
   <script src="plugins/jquery/jquery.min.js"></script>
 
@@ -191,7 +191,7 @@
   <script src="dist/js/demo.js"></script>
 
   <script src="dist/js/pages/dashboard.js"></script>
-  
+
   @yield('customJs')
 </body>
 

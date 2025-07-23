@@ -4,6 +4,7 @@ use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\FeeStructureController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\FeeHeadController;
 use App\Http\Controllers\StudentController;
@@ -64,6 +65,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('student/delete/{id}', [StudentController::class, 'destroy'])->name('student.delete');
         Route::get('student/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
         Route::post('student/update/{id}', [StudentController::class, 'update'])->name('student.update');
+
+        //Announcement Routes
+        Route::get('announcement/create', [AnnouncementController::class, 'index'])->name('announcement.create');
+        Route::post('announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
+        Route::get('announcement/read', [AnnouncementController::class, 'read'])->name('announcement.read'); //index-list
+        Route::get('announcement/delete/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.delete');
+        Route::get('announcement/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcement.edit');
+        Route::post('announcement/update/{id}', [AnnouncementController::class, 'update'])->name('announcement.update');
     });
 });
 

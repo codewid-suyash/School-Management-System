@@ -4,13 +4,26 @@
 <div class="content-wrapper">
   <div class="content-header">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                @foreach($announcements as $announcement)
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <strong>{{ $announcement->message }}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endforeach
+                
+            </div>
+        </div>
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1 class="m-0">Student Dashboard</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('student.dashboard') }}">Home</a></li>
             <li class="breadcrumb-item active">Student Dashboard</li>
           </ol>
         </div>
@@ -18,9 +31,13 @@
     </div>
   </div>
     <!-- Main content -->
-                 @if(\Carbon\Carbon::parse(Auth::user()->dob)->isBirthday())
-        <div class="alert alert-success">
-            <strong>Happy Birthday!</strong> Enjoy your special day.
+     @if(\Carbon\Carbon::parse(Auth::user()->dob)->isBirthday())
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            
+            <strong>Happy Birthday! {{ Auth::user()->name }}</strong> Enjoy your special day.
         </div>
     @endif
 
