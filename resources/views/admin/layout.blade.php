@@ -253,6 +253,55 @@
               </ul>
             </li>
 
+              <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                 Subject Mgmt
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('subject.create')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Subject</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('subject.read')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Subject</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+              <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                Assign Subject To Class Mgmt
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('assign-subject.create')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Assign Subject</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('assign-subject.read')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Assign Subject</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
           </ul>
         </nav>
 

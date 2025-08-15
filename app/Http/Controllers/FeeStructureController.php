@@ -10,18 +10,18 @@ use Illuminate\Http\Request;
 
 class FeeStructureController extends Controller
 {
-   
+
     public function index()
     {
         $data['classes'] = Classes::all();
         $data['academic_years'] = AcademicYear::all();
         $data['fee_heads'] = FeeHead::all();
-   
+
         return view('feestructure.create',$data);
     }
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'class_id'=>'required',
             'academic_year_id'=>'required',
@@ -38,7 +38,7 @@ class FeeStructureController extends Controller
             'january'=>'required',
             'february'=>'required',
             'march'=>'required',
-           
+
         ]);
         // FeeStructure::create([$request->all()]);
         //         dd($request->all());
@@ -47,7 +47,7 @@ class FeeStructureController extends Controller
         $feeStructure->academic_year_id = $request->academic_year_id;
         $feeStructure->fee_head_id = $request->fee_head_id;
         $feeStructure->april = $request->april;
-        $feeStructure->may = $request->may;     
+        $feeStructure->may = $request->may;
         $feeStructure->june = $request->june;
         $feeStructure->july = $request->july;
         $feeStructure->august = $request->august;
@@ -74,7 +74,7 @@ class FeeStructureController extends Controller
             $feestructures->where('academic_year_id', $request->get('academic_year_id'));
         }
         $data['feestructures'] = $feestructures->get();
-        
+
         $data['classes'] = Classes::all();
         $data['academic_years'] = AcademicYear::all();
 
@@ -123,7 +123,7 @@ class FeeStructureController extends Controller
         $feeStructure->academic_year_id = $request->academic_year_id;
         $feeStructure->fee_head_id = $request->fee_head_id;
         $feeStructure->april = $request->april;
-        $feeStructure->may = $request->may;     
+        $feeStructure->may = $request->may;
         $feeStructure->june = $request->june;
         $feeStructure->july = $request->july;
         $feeStructure->august = $request->august;

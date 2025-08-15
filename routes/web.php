@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademicYearController;
+use App\Http\Controllers\AssignSubjectToClassController;
 use App\Http\Controllers\FeeStructureController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -8,7 +9,9 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\FeeHeadController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
+use PhpParser\Node\Expr\Assign;
 
 Route::get('/', function () {
     return view('admin.login');
@@ -73,6 +76,22 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('announcement/delete/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.delete');
         Route::get('announcement/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcement.edit');
         Route::post('announcement/update/{id}', [AnnouncementController::class, 'update'])->name('announcement.update');
+
+        //Subject Routes
+        Route::get('subject/create', [SubjectController::class, 'index'])->name('subject.create');
+        Route::post('subject/store', [SubjectController::class, 'store'])->name('subject.store');
+        Route::get('subject/read', [SubjectController::class, 'read'])->name('subject.read'); //index-list
+        Route::get('subject/delete/{id}', [SubjectController::class, 'destroy'])->name('subject.delete');
+        Route::get('subject/edit/{id}', [SubjectController::class, 'edit'])->name('subject.edit');
+        Route::post('subject/update/{id}', [SubjectController::class, 'update'])->name('subject.update');
+
+        //assign subject to class
+        Route::get('assign-subject/create', [AssignSubjectToClassController::class, 'index'])->name('assign-subject.create');
+        Route::post('assign-subject/store', [AssignSubjectToClassController::class, 'store'])->name('assign-subject.store');
+        Route::get('assign-subject/read', [AssignSubjectToClassController::class, 'read'])->name('assign-subject.read'); //index-list
+        Route::get('assign-subject/delete/{id}', [AssignSubjectToClassController::class, 'destroy'])->name('assign-subject.delete');
+        Route::get('assign-subject/edit/{id}', [AssignSubjectToClassController::class, 'edit'])->name('assign-subject.edit');
+        Route::post('assign-subject/update/{id}', [AssignSubjectToClassController::class, 'update'])->name('assign-subject.update');
     });
 });
 
