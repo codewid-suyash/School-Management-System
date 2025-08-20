@@ -10,6 +10,7 @@ use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\FeeHeadController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use PhpParser\Node\Expr\Assign;
 
@@ -92,6 +93,15 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('assign-subject/delete/{id}', [AssignSubjectToClassController::class, 'destroy'])->name('assign-subject.delete');
         Route::get('assign-subject/edit/{id}', [AssignSubjectToClassController::class, 'edit'])->name('assign-subject.edit');
         Route::post('assign-subject/update/{id}', [AssignSubjectToClassController::class, 'update'])->name('assign-subject.update');
+
+        //teachers Routes
+        Route::get('teacher/create', [TeacherController::class, 'index'])->name('teacher.create');
+        Route::post('teacher/store', [TeacherController::class, 'store'])->name('teacher.store');
+        Route::get('teacher/read', [TeacherController::class, 'read'])->name('teacher.read');
+        Route::get('teacher/edit/{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
+        Route::post('teacher/update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
+        Route::get('teacher/delete/{id}', [TeacherController::class, 'destroy'])->name('teacher.delete');
+
     });
 });
 

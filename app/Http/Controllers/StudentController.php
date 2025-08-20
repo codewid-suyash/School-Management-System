@@ -31,7 +31,7 @@ class StudentController extends Controller
             'password' => 'required|min:6',
             'dob' => 'required|date',
        ]);
-       
+
         // Create a new student record
         $student = new User();
         $student->father_name = $request->father_name;
@@ -46,7 +46,7 @@ class StudentController extends Controller
         $student->dob = $request->dob;
         $student->role = "student"; // Assuming a default role for students
         $student->save();
-        return redirect()->route('student.read')->with('success', 'Student added successfully');        
+        return redirect()->route('student.read')->with('success', 'Student added successfully');
 
     }
 

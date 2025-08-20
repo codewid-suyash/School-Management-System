@@ -104,6 +104,7 @@
                 </p>
               </a>
             </li>
+            
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -203,6 +204,7 @@
 
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -228,7 +230,7 @@
               </ul>
             </li>
 
-             <li class="nav-item">
+            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -253,7 +255,7 @@
               </ul>
             </li>
 
-              <li class="nav-item">
+            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -277,11 +279,12 @@
 
               </ul>
             </li>
-              <li class="nav-item">
+
+            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
-                Assign Subject To Class Mgmt
+                Assign Subject Mgmt
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
