@@ -6,6 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <title>School.LMS</title>
   <base href="{{asset('admincss')}}/"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
@@ -104,7 +105,7 @@
                 </p>
               </a>
             </li>
-            
+
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -299,6 +300,55 @@
                   <a href="{{route('assign-subject.read')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>View Assign Subject</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+               Teacher Mgmt
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('teacher.create')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Teacher</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('teacher.read')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Teacher</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+               Assign-Teacher Mgmt
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('assign-teacher.create')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Assign Teacher</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('assign-teacher.read') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Assign Teacher</p>
                   </a>
                 </li>
 

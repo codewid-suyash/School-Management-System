@@ -6,6 +6,7 @@ use App\Http\Controllers\FeeStructureController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\AssignTeacherToClassController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\FeeHeadController;
 use App\Http\Controllers\StudentController;
@@ -94,6 +95,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('assign-subject/edit/{id}', [AssignSubjectToClassController::class, 'edit'])->name('assign-subject.edit');
         Route::post('assign-subject/update/{id}', [AssignSubjectToClassController::class, 'update'])->name('assign-subject.update');
 
+
+        //assign teacher to class
+        Route::get('assign-teacher/create',[AssignTeacherToClassController::class,'index'])->name('assign-teacher.create');
+        Route::post('assign-teacher/store',[AssignTeacherToClassController::class,'store'])->name('assign-teacher.store');
+        Route::get('findsubject',[AssignTeacherToClassController::class,'findSubject'])->name('findSubject');
+        Route::get('assign-teacher/read',[AssignTeacherToClassController::class,'read'])->name('assign-teacher.read');
+
         //teachers Routes
         Route::get('teacher/create', [TeacherController::class, 'index'])->name('teacher.create');
         Route::post('teacher/store', [TeacherController::class, 'store'])->name('teacher.store');
@@ -104,6 +112,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     });
 });
+
+//Student login /logout Routes
 
 Route::group(['prefix' => 'student'], function () {
 
@@ -116,5 +126,19 @@ Route::group(['prefix' => 'student'], function () {
         Route::get('logout', [UserController::class, 'logout'])->name('student.logout');
         Route::get('change-password', [UserController::class, 'changePassword'])->name('student.change-password');
         Route::post('update-password', [UserController::class, 'updatePassword'])->name('student.update-password');
+    });
+});
+
+//teacher login/logout routes
+
+Route::group(['prefix' => 'teacher'],function(){
+    Route::group(['middleware' => 'teacher.guest'], function(){
+        Route::get('login',[TeacherController::class,'login'])->name('teacher.login');
+        Route::post('authenticate',[TeacherController::class,'authenticate'])->name('teacher.authenticate');
+    });
+    Route::group(['middleware'=> 'teacher.auth'],function(){
+        Route::get('dashboard',[TeacherController::class,'dashboard'])->name('teacher.dashboard');
+        Route::get('logout', [TeacherController::class, 'logout'])->name('teacher.logout');
+
     });
 });

@@ -24,6 +24,7 @@ class AssignSubjectToClassController extends Controller
         ]);
         $class_id= $request->input('class_id');
         $subject_id= $request->input('subject_id');
+        
         foreach ($subject_id as $subject_id) {
             AssignSubjectToClass::updateOrCreate(
                 ['class_id' => $class_id, 'subject_id' => $subject_id],

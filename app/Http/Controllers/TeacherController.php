@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Faker\Provider\bg_BG\PhoneNumber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
@@ -73,4 +74,36 @@ class TeacherController extends Controller
         return redirect()->route('teacher.read')->with('success', 'Teacher deleted successfully.');
     }
 
+    public function login(){
+        return view('user.teacher.login');
+    }
+
+    public function authenticate(Request $request){
+       $request->validate([
+        'email'=>'required|email',
+        'password'=>'required|min:6'
+       ]);
+
+       if(Auth::guard('teacher')->attempt(['email'=>$request->email,'password'=>$request->password]))
+       {
+        if(Auth::guard('teacher')->user()->role != 'teacher')
+        {
+            Auth::guard('teacher')->logout();
+            return redirect()->route('teacher.login')->with('error', 'unauthorized user - access denied');
+        }else{
+            return redirect()->route('teacher.dashboard');
+        }
+
+       }
+       return redirect()->route('teacher.login')->with('error', 'Invalid credentials');
+    }
+
+    public function dashboard(){
+      return view('user.teacher.dashboard');
+    }
+
+    public function logout(){
+        Auth::guard('teacher')->logout();
+        return redirect()->route('teacher.login')->with('success', 'Logged out successfully.');
+    }
 }
