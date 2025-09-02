@@ -48,16 +48,16 @@
         <li class="nav-item d-none d-sm-inline-block">
           <a href="{{route('admin.dashboard')}}" class="nav-link">Home</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
+        {{-- <li class="nav-item d-none d-sm-inline-block">
           <a href="{{route('academic-year.create')}}" class="nav-link">Academic Year</a>
-        </li>
+        </li> --}}
       </ul>
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <!-- Profile Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-user-circle"></i> Profile
+        <i class="fas fa-user-circle"></i> {{ Auth::guard('admin')->user()->name }}
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
         <a class="dropdown-item" href="">My Profile</a>
@@ -330,6 +330,7 @@
 
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -365,7 +366,7 @@
    @yield('content')
 
     <footer class="main-footer">
-      <strong> &copy; 2025-2026 <a href="">Student.LMS</a>.</strong>
+      <strong> &copy; 2025-2026 <a href="">School Management System</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0
@@ -416,7 +417,4 @@
 
   @yield('customJs')
 </body>
-
-<!-- Mirrored from adminlte.io/themes/v3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 May 2024 05:16:08 GMT -->
-
 </html>

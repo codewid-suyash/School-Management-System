@@ -39,6 +39,7 @@
                                 {{ session::get('error') }}
                             </div>
                         @endif
+
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"><a href="{{ route('assign-teacher.create') }}">Create Assign
@@ -96,9 +97,9 @@
                                                 <th>{{ $item->teacher->name }} </th>
                                                 <th>{{ $item->created_at }} </th>
                                                 <th><a class="btn btn-primary"
-                                                        href="{{ route('assign-subject.edit', $item->id) }}">Edit</a>
+                                                        href="{{ route('assign-teacher.edit', $item->id) }}">Edit</a>
                                                     <a class="btn btn-danger"
-                                                        href="{{ route('assign-subject.delete', $item->id) }}"
+                                                        href="{{ route('assign-teacher.delete', $item->id) }}"
                                                         onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                                                 </th>
                                             </tr>

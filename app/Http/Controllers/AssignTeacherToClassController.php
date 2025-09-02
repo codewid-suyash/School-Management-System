@@ -8,14 +8,14 @@ use App\Models\Classes;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Assign;
 
 class AssignTeacherToClassController extends Controller
 {
     public function index()
     {
-        $data['classes']=Classes::all();
-        $data['subjects']=Subject::all();
-        $data['teachers']=User::where('role','teacher')->get();
+        $data['classes'] = Classes::all();
+        $data['teachers'] = User::where('role', 'teacher')->get();
 
         return view('assign-teacher.create', $data);
     }
@@ -35,47 +35,55 @@ class AssignTeacherToClassController extends Controller
             'subject_id' => 'required',
             'teacher_id' => 'required',
         ]);
-        AssignTeacherToClass::updateOrCreate([
-            'class_id' => $request->class_id,
-            'subject_id' => $request->subject_id,
-        ],
-        [
-            'class_id' => $request->class_id,
-            'subject_id' => $request->subject_id,
-            'teacher_id' => $request->teacher_id
-        ]
-    );
-        return redirect()->route('assign-teacher.create')->with('success', 'Teacher assigned successfully');
+        AssignTeacherToClass::updateOrCreate(
+            [
+                'class_id' => $request->class_id,
+                'subject_id' => $request->subject_id,
+            ],
+            [
+                'class_id' => $request->class_id,
+                'subject_id' => $request->subject_id,
+                'teacher_id' => $request->teacher_id
+            ]
+        );
+        return redirect()->route('assign-teacher.read')->with('success', 'Teacher assigned successfully');
     }
 
-    public function read(Request $request){
-        $data['classes']=Classes::all();
+    public function read(Request $request)
+    {
+        $data['classes'] = Classes::all();
         $query = AssignTeacherToClass::query()->with(['class', 'subject', 'teacher'])->latest();
-        if($request->filled('class_id')){
+        if ($request->filled('class_id')) {
             $query->where('class_id', $request->class_id);
         }
-        $data['assign_teachers']=$query->get();
+        $data['assign_teachers'] = $query->get();
 
         return view('assign-teacher.list', $data);
     }
-    public function edit(AssignTeacherToClass $assignTeacherToClass)
+
+    public function edit($id)
     {
-        //
+        $res = AssignTeacherToClass::find($id);
+        $data['assign_teacher'] = $res;
+        $data['subjects'] = AssignSubjectToClass::with('subject')->where('class_id', $res->class_id)->get();
+        $data['classes'] = Classes::all();
+        $data['teachers'] = User::where('role', 'teacher')->get();
+        return view('assign-teacher.edit', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, AssignTeacherToClass $assignTeacherToClass)
+    public function update(Request $request,$id)
     {
-        //
+        $assign_teacher = AssignTeacherToClass::find($id);
+        $assign_teacher->update($request->all());
+
+        return redirect()->route('assign-teacher.read')->with('success', 'Assigned Teacher updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(AssignTeacherToClass $assignTeacherToClass)
+    public function destroy($id)
     {
-        //
+        $data= AssignTeacherToClass::find($id);
+        $data->delete();
+        return redirect()->route('assign-teacher.read')->with('success', 'Teacher Unassigned Successfully');
+
     }
 }

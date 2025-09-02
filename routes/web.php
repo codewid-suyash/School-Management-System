@@ -101,6 +101,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('assign-teacher/store',[AssignTeacherToClassController::class,'store'])->name('assign-teacher.store');
         Route::get('findsubject',[AssignTeacherToClassController::class,'findSubject'])->name('findSubject');
         Route::get('assign-teacher/read',[AssignTeacherToClassController::class,'read'])->name('assign-teacher.read');
+        Route::get('assign-teacher/edit/{id}',[AssignTeacherToClassController::class,'edit'])->name('assign-teacher.edit');
+        Route::post('assign-teacher/update/{id}',[AssignTeacherToClassController::class,'update'])->name('assign-teacher.update');
+        Route::get('assign-teacher/delete/{id}',[AssignTeacherToClassController::class,'destroy'])->name('assign-teacher.delete');
 
         //teachers Routes
         Route::get('teacher/create', [TeacherController::class, 'index'])->name('teacher.create');
