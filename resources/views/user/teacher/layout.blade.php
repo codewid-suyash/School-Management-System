@@ -102,7 +102,15 @@
               <a href="{{route('teacher.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Dashboard
+                  Teacher Dashboard
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('teacher.myclass')}}" class="nav-link">
+               <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  My Classes & Subjects <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
             </li>

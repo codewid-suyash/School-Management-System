@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignTeacherToClass;
 use App\Models\User;
 use Faker\Provider\bg_BG\PhoneNumber;
 use Illuminate\Http\Request;
@@ -105,5 +106,11 @@ class TeacherController extends Controller
     public function logout(){
         Auth::guard('teacher')->logout();
         return redirect()->route('teacher.login')->with('success', 'Logged out successfully.');
+    }
+
+    public function myClass(){
+        $data['teacher_id'] = Auth::guard('teacher')->id();
+        $data['assign_class'] = AssignTeacherToClass::where('teacher_id', $data['teacher_id'])->with('class','subject')->get();
+        return view('user.teacher.myclass', $data);
     }
 }

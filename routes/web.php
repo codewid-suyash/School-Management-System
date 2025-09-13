@@ -12,6 +12,7 @@ use App\Http\Controllers\FeeHeadController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\UserController;
 use PhpParser\Node\Expr\Assign;
 
@@ -113,6 +114,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('teacher/update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
         Route::get('teacher/delete/{id}', [TeacherController::class, 'destroy'])->name('teacher.delete');
 
+        //timetable routes
+        Route::get('timetable/create',[TimetableController::class,'index'])->name('timetable.create');
+        Route::post('timetable/store',[TimetableController::class,'store'])->name('timetable.store');
+        Route::get('timetable/read',[TimetableController::class,'read'])->name('timetable.read');
+        Route::get('timetable/edit/{id}',[TimetableController::class,'edit'])->name('timetable.edit');
+        Route::post('timetable/update/{id}',[TimetableController::class,'update'])->name('timetable.update');
+        Route::get('timetable/delete/{id}',[TimetableController::class,'destroy'])->name('timetable.delete');
     });
 });
 
@@ -129,6 +137,7 @@ Route::group(['prefix' => 'student'], function () {
         Route::get('logout', [UserController::class, 'logout'])->name('student.logout');
         Route::get('change-password', [UserController::class, 'changePassword'])->name('student.change-password');
         Route::post('update-password', [UserController::class, 'updatePassword'])->name('student.update-password');
+        Route::get('mysubject',[UserController::class,'mySubject'])->name('student.mysubject');
     });
 });
 
@@ -141,6 +150,7 @@ Route::group(['prefix' => 'teacher'],function(){
     });
     Route::group(['middleware'=> 'teacher.auth'],function(){
         Route::get('dashboard',[TeacherController::class,'dashboard'])->name('teacher.dashboard');
+        Route::get('myclass',[TeacherController::class,'myClass'])->name('teacher.myclass');
         Route::get('logout', [TeacherController::class, 'logout'])->name('teacher.logout');
 
     });

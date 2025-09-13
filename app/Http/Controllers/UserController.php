@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Models\AssignSubjectToClass;
+use App\Models\AssignTeacherToClass;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,5 +69,12 @@ class UserController extends Controller
             return redirect()->route('student.change-password')->with('error', 'Old password is incorrect');
         }
 
+    }
+
+    public function mySubject()
+    {
+        $class_id = Auth::guard('web')->user()->class_id;
+        $assign_subjects= AssignTeacherToClass::where('class_id', $class_id)->with('subject', 'teacher')->get();
+        return view('user.student.mysubject', compact('assign_subjects'));
     }
 }

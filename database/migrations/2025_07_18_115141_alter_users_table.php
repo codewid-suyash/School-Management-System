@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('class_id')->nullable();
+            $table->foreignId('academic_year_id')->nullable();
             $table->string('admission_date')->nullable();
             $table->string('father_name')->nullable();
             $table->string('mother_name')->nullable();
