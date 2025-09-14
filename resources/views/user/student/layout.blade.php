@@ -47,9 +47,9 @@
         <li class="nav-item d-none d-sm-inline-block">
           <a href="{{route('student.dashboard')}}" class="nav-link">Home</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
+        {{-- <li class="nav-item d-none d-sm-inline-block">
           <a href="{{route('student.create')}}" class="nav-link">student</a>
-        </li>
+        </li> --}}
       </ul>
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
@@ -112,7 +112,15 @@
               <a href="{{route('student.mysubject')}}" class="nav-link">
                <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
-                  My Subjects & Teachers<i class="right fas fa-angle-left"></i>
+                  My Subjects & Teachers
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('student.timetable')}}" class="nav-link">
+               <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Timetable
                 </p>
               </a>
             </li>

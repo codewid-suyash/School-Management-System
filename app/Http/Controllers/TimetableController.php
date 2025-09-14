@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignSubjectToClass;
 use App\Models\Classes;
 use App\Models\Days;
 use App\Models\Subject;
@@ -45,18 +46,23 @@ class TimetableController extends Controller
                 );
             }
         }
-        return redirect()->back()->with('success', 'Timetable entry created successfully.');
+        return redirect()->route('timetable.read')->with('success', 'Timetable entry created successfully.');
     }
 
     public function read(Request $request)
     {
+        $data['timetables'] = Timetable::with(['class', 'subject', 'day']);
+        $data['subjects'] = [];
+
         if ($request->class_id) {
-            $data['timetables'] = Timetable::with(['class', 'subject', 'day'])
-                ->where('class_id', $request->class_id)
-                ->get();
-        } else {
-            $data['timetables'] = Timetable::with(['class', 'subject', 'day'])->get();
+            $data['timetables']->where('class_id', $request->class_id);
+            $data['subjects'] = AssignSubjectToClass::with('subject')->where('class_id', $request->class_id)->get();
         }
+        if ($request->subject_id) {
+            $data['timetables']->where('subject_id', $request->subject_id);
+        }
+
+        $data['timetables'] = $data['timetables']->get();
         $data['classes'] = Classes::all();
 
         return view('timetable.list', $data);

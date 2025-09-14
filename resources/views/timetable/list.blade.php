@@ -60,6 +60,17 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="subject_id">Subject</label>
+                                            <select name="subject_id" id="subject_id" class="form-control">
+                                                <option disabled selected>Select Subject</option>
+                                                @foreach ($subjects as $subject)
+                                                    <option value="{{ $subject->subject->id }}"
+                                                        {{ request('subject_id') == $subject->subject->id ? 'selected' : '' }}>
+                                                        {{ $subject->subject->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
                                         <div class="col-md-4 d-flex align-items-end">
                                             <div class="form-group">
@@ -94,8 +105,8 @@
                                                 <th>{{ $item->class->name }} </th>
                                                 <th>{{ $item->subject->name }} </th>
                                                 <th>{{ $item->day->name }} </th>
-                                                <th>{{ $item->start_time }} </th>
-                                                <th>{{ $item->end_time }} </th>
+                                                <th>{{\Carbon\Carbon::createFromFormat('H:i:s',$item->start_time)->format('h:i A')}}</th>
+                                                <th>{{ \Carbon\Carbon::createFromFormat('H:i:s',$item->end_time)->format('h:i A') }} </th>
                                                 <th>{{ $item->room_no }} </th>
                                                 <th>
                                                     <a class="btn btn-danger"
@@ -158,5 +169,38 @@
                 "responsive": true,
             });
         });
+    </script>
+
+
+<script>
+    $('#class_id').change(function(){
+        var class_id = $(this).val();
+        $.ajax({
+            url:"{{ route('findSubject') }}",
+            type:"get",
+            data:{class_id},
+            dataType:'json',
+            success:function(response){
+                // console.log(response);
+
+//both are correct
+                //first method to append options//
+
+                // $('#subject_id').empty();
+                // $('#subject_id').append('<option disabled selected>Select Subject</option>');
+                // $.each(response.subjects, function(key, value){
+                //     $('#subject_id').append('<option value="'+value.subject_id+'">'+value.subject.name+'</option>');
+                // });
+
+                //second
+                $('#subject_id').find('option').not(':first').remove();
+                $.each(response['subjects'],(key,item)=>{
+                    $('#subject_id').append(`
+                    <option value="${item.subject_id}">${item.subject.name}</option>
+                    `)
+                })
+            }
+        })
+    })
     </script>
 @endsection

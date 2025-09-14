@@ -13,12 +13,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>My Subjects & Teachers</h1>
+                        <h1>Timetable</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('student.dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">My Subjects & Teachers List</li>
+                            <li class="breadcrumb-item active">Timetable</li>
                         </ol>
                     </div>
                 </div>
@@ -41,61 +41,36 @@
                         @endif
 
                         <div class="card">
-
-                            <div class="card-header">
-
-                                {{-- <form action="" method="GET">
-                                    <div class="row">
-                                        <div class="form-group col-md-4">
-                                            <label for="class_id">Class</label>
-                                            <select name="class_id" id="class_id" class="form-control">
-                                                <option disabled selected>Select Class</option>
-                                                @foreach ($classes as $class)
-                                                    <option value="{{ $class->id }}"
-                                                        {{ request('class_id') == $class->id ? 'selected' : '' }}>
-                                                        {{ $class->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-4 d-flex align-items-end">
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-success me-2">Filter</button>
-                                                <button onclick="window.location='{{ route('assign-teacher.read') }}'"
-                                                    type="reset" class="btn btn-secondary">Reset</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form> --}}
-
+                            @foreach ($timetable as $day => $details)
+                            <div class="card-header bg-info">
+                                <h3 class="card-title">{{ $day }}</h3>
                             </div>
 
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Subject Name</th>
-                                            <th>Practical/Theory</th>
-                                            <th>Teacher Name</th>
-
+                                            <th style="width: 10px">#</th>
+                                            <th>Subject</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Room No.</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($assign_subjects as $item)
+                                        @foreach ($details as $slot )
                                             <tr>
-                                                <th>{{ $loop->iteration }} </th>
-                                                <th>{{ $item->subject->name }} </th>
-                                                <th>{{ $item->subject->type }} </th>
-                                                <th>{{ $item->teacher->name }} </th>
+                                                <td>{{ $loop->index + 1 }}</td>
+                                                <td>{{ $slot['subject'] }}</td>
+                                                <td>{{ date('h:i A', strtotime($slot['start_time'])) }}</td>
+                                                <td>{{ date('h:i A', strtotime($slot['end_time'])) }}</td>
+                                                <td>{{ $slot['room_no'] }}</td>
                                             </tr>
                                         @endforeach
-
                                     </tbody>
-
                                 </table>
                             </div>
-
+                            @endforeach
                         </div>
 
                     </div>
@@ -145,4 +120,37 @@
             });
         });
     </script>
+
+{{--
+<script>
+    $('#class_id').change(function(){
+        var class_id = $(this).val();
+        $.ajax({
+            url:"{{ route('findSubject') }}",
+            type:"get",
+            data:{class_id},
+            dataType:'json',
+            success:function(response){
+                // console.log(response);
+
+//both are correct
+                //first method to append options//
+
+                // $('#subject_id').empty();
+                // $('#subject_id').append('<option disabled selected>Select Subject</option>');
+                // $.each(response.subjects, function(key, value){
+                //     $('#subject_id').append('<option value="'+value.subject_id+'">'+value.subject.name+'</option>');
+                // });
+
+                //second
+                $('#subject_id').find('option').not(':first').remove();
+                $.each(response['subjects'],(key,item)=>{
+                    $('#subject_id').append(`
+                    <option value="${item.subject_id}">${item.subject.name}</option>
+                    `)
+                })
+            }
+        })
+    })
+    </script> --}}
 @endsection
